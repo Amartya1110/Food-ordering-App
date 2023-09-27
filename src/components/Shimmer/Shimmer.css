@@ -1,0 +1,52 @@
+.shimmer-card{
+    height: 300px;
+    width: 300px;
+    background-color: rgba(196, 196, 196, 0.2);
+    border-radius: 10px;
+
+    margin: 1em;
+    padding: 10px;
+}
+
+.shimmer-card> div:nth-child(3) {
+    width: 50%;
+}
+
+.shimmer {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: rgba(196, 196, 196, 0.8);
+    }
+
+    100% {
+        background-color: rgba(196, 196, 196, 0.4);
+    }
+}
+
+.shimmer-img {
+    height: 200px;
+    border-radius: 10px;
+}
+
+.shimmer-text {
+    height: 1rem;
+    margin: 0.3em 0em;
+    border-radius: 3px;
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-details> div:first-child {
+    width: 65%;
+}
+
+.card-details> div:last-child {
+    width: 20%;
+}

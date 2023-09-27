@@ -1,11 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client"
+import MainContent from "./components/MainContent";
+
+const Header = () => {
+    return(
+        <div id="header">
+            <h1>Infinite Scroll</h1>
+        </div>
+    )
+}
+
+
+
+
 
 const App = () => {
     return(
-        <div>
-            <h1>Infinite Scroll</h1>
-        </div>
+        <>
+            <Header />
+            <MainContent />
+        </>
     )
 }
 
