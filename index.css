@@ -122,3 +122,7 @@ body {
 .res-details>h1 {
     font-size: 0.9rem;
 }
+
+#intersection-div {
+    /* background-color: red; */
+}

@@ -1,5 +1,5 @@
 const RestaurantCard = ({resData}) => {
-    console.log(resData)
+    // console.log(resData)
     const {info, cta} = resData
 
     const cuisine = info?.cuisines?.join(", ")
