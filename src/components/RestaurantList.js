@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import CardShimmer from "./Shimmer/CardShimmer";
 
@@ -7,17 +7,26 @@ const RestaurantList = () => {
 
     const [loading,setLoading] = useState(false)
 
+    let collection = useRef(83645)
+
     const getNoOfShimmerCards = () => {
         return Math.ceil(allResList.length / 12)*12 - allResList.length
     }
 
     async function fetchResData() {
-        // const response = await fetch("https://www.zomato.com/webroutes/getPage")
-        const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.588336&lng=88.428065&collection=83649&tags=&sortBy=&filters=&type=rcv2&offset=9&page_type=null")
-        const jsonData = await response.json()
-        // console.log(jsonData?.data?.cards.slice(2,))
-        const resData = jsonData?.data?.cards.slice(2,)
-        setAllResList([...allResList, ...resData])
+        if(collection.current < 84646) {
+            // const response = await fetch("https://www.zomato.com/webroutes/getPage")
+            const response = await fetch(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.588336&lng=88.428065&collection=${collection?.current}&tags=&sortBy=&filters=&type=rcv2&offset=9&page_type=null`)
+            collection.current = collection.current + 1
+            console.log(collection.current)
+            const jsonData = await response.json()
+            // console.log(jsonData?.data?.cards.slice(2,))
+            const resData = jsonData?.data?.cards.slice(2,)
+            console.log(resData)
+            if(resData) {
+                setAllResList([...allResList, ...resData])
+            }
+        }
 
         // Testing another public Swiggy API
         // const res2 = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.588336&lng=88.428065&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
@@ -30,14 +39,14 @@ const RestaurantList = () => {
 
     // The below intersection observer will observe the "#intersection-div"
     const observer = new IntersectionObserver((entries) => {
-        console.log(entries)
+        // console.log(entries)
         // Here entries[0] - is for the "intersection-div"
         if(entries[0].isIntersecting) {
             setLoading(true)
         }
 
     }, {
-        threshold: 1,
+        threshold: 0.75,
         rootMargin: "0px"
     })
 
