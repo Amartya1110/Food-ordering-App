@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client"
 import MainContent from "./components/MainContent";
 
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 const Header = () => {
     return(
         <div id="header">
@@ -16,13 +18,20 @@ const Header = () => {
 
 const App = () => {
     return(
-        <>
+        <div className="App">
             <Header />
             <MainContent />
-        </>
+        </div>
     )
 }
 
+const appRouter = createBrowserRouter([
+    {
+        path: '/',
+        element: <App />,
+    },
+])
+
 const root = ReactDOM.createRoot(document.getElementById("root"))
 
-root.render(<App />)
+root.render(<RouterProvider router={appRouter} />)
