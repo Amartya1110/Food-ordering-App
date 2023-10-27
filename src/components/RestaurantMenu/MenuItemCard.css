@@ -1,0 +1,89 @@
+.menu-item-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 2px solid rgba(87, 87, 87, 0.5);
+    padding-bottom: 1.5em;
+    margin-bottom: 1em;
+}
+
+.item-card-left-container {
+    width: 70%;
+}
+
+.item-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #373737;
+}
+
+.item-price {
+    font-size: 0.8rem;
+    margin: 0.7em 0 1.2em;
+    color: #373737;
+}
+
+.item-description {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #575757;
+    max-width: 600px;
+}
+
+.item-card-right-container {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+}
+
+.item-image {
+    min-width: 115px;
+    width: 100%;
+    max-width: 150px;
+}
+
+.item-button-container {
+    background-color: #60b246;
+    width: 6em;
+
+    border-radius: 0.3em;
+
+    color: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0em;
+    left: 50%;
+    translate: -50% 40%;
+
+}
+
+.item-button {
+    background-color: rgba(0, 0, 0, 0);
+    color: #ffffff;
+    padding: 0.4em 0.8em;
+    border-radius: 0.3em;
+
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.item-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-count {
+    font-size: 1rem;
+    font-weight: 400;
+    width: 1.5em;
+    text-align: center;
+}

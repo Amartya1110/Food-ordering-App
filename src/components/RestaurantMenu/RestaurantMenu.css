@@ -1,0 +1,91 @@
+.restaurant-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.restaurant-header-container {
+    border-bottom: 2px dotted #a5a5a5;
+    padding: 2em;
+    margin-bottom: 2em;
+    width: 80%;
+}
+
+.restaurant-header-wrapper {
+    margin: 1em auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.restaurant-name-address-wrapper {
+
+}
+
+.restaurant-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+.restaurant-cuisines,.restaurant-address {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #757575;
+    margin-bottom: 0.3em;
+}
+
+.restaurant-rating-wrapper {
+    padding: 0.5em;
+    border: 1px solid #a6a6a6;
+    border-radius: 0.3em;
+}
+
+.star-rating {
+    border-bottom: 1px solid #a6a6a6;
+    padding-bottom: 0.7rem;
+    margin-bottom: 0.7rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star-rating>svg {
+    height: 1rem;
+    margin-right: 5px;
+}
+
+.star-rating>h1 {
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.totalRatingsString {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #757575;
+}
+
+.restaurant-delivery-message-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.restaurant-delivery-message-wrapper>img {
+    height: 1em;
+    margin-right: 0.3em;
+}
+
+.restaurant-delivery-fee-details {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #757575;
+}
+
+
+.res-category-container {
+    width: 80%;
+}

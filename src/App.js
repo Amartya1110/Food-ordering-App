@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client"
 import MainContent from "./components/MainContent";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
 
 const Header = () => {
     return(
@@ -20,7 +21,7 @@ const App = () => {
     return(
         <div className="App">
             <Header />
-            <MainContent />
+            <Outlet />
         </div>
     )
 }
@@ -29,6 +30,16 @@ const appRouter = createBrowserRouter([
     {
         path: '/',
         element: <App />,
+        children: [
+            {
+                path:"/",
+                element: <MainContent />,
+            },
+            {
+                path:"resMenu",
+                element: <RestaurantMenu />,
+            },
+        ],
     },
 ])
 
