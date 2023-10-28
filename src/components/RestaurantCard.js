@@ -7,7 +7,7 @@ const RestaurantCard = ({resData}) => {
     const cuisine = info?.cuisines?.join(", ")
 
     return(
-        <Link to={"/resMenu/" + info?.id}>
+        <Link to={"/resMenu/" + info?.id} className="res-card-wrapper-link">
             <div className="res-card" id={info?.id}>
                 <div className="res-img">
                     <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + info?.cloudinaryImageId} alt="res-logo"/>

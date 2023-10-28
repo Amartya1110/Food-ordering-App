@@ -39,6 +39,11 @@ body {
 
 }
 
+.res-card-wrapper-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .res-card {
     width: 300px;
     height: 300px;
