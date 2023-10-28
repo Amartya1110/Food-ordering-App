@@ -89,3 +89,8 @@
 .res-category-container {
     width: 80%;
 }
+
+.menu-category-border {
+    height: 1em;
+    background-color: #909090;
+}

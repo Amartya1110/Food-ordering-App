@@ -73,10 +73,20 @@ const RestaurantMenu = () => {
                 {(resMenuData.length === 0)? null : (
                     resMenuData[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.slice(1,).map(menucategoryData => {
                         if(menucategoryData?.card?.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory") {
-                            return <MenuCategory {...menucategoryData?.card?.card?.categories} />
+                            return (
+                                <div key={menucategoryData?.card?.card?.title}>
+                                    <MenuCategory title={menucategoryData?.card?.card?.title} categories={menucategoryData?.card?.card?.categories} />
+                                    <div className="menu-category-border"></div>
+                                </div>
+                            )
                         }
                         else if(menucategoryData?.card?.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") {
-                            return <MenuSubCategory {...(menucategoryData?.card?.card)} />
+                            return (
+                                <div key={menucategoryData?.card?.card?.title}>
+                                    <MenuSubCategory {...(menucategoryData?.card?.card)} />
+                                    <div className="menu-category-border"></div>
+                                </div>
+                            )
                         }
                         else {
                             return null

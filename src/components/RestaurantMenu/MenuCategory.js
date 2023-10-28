@@ -1,10 +1,15 @@
 import MenuSubCategory from "./MenuSubCategory"
 
-const MenuCategory = (props) => {
-    console.log(props)
+// CSS
+import "./MenuCategory.css"
+
+const MenuCategory = ({title, categories}) => {
     return (
         <div className="menu-category">
-            <MenuSubCategory  {...(props[0])} />
+            <h1 className="menu-category-heading">{title}</h1>
+            {
+                categories.map(category => <MenuSubCategory key={category?.title} {...category} />)
+            }
         </div>
     )
 }
