@@ -12,15 +12,19 @@ import "./RestaurantMenu.css"
 
 // Images
 import deliveryIcon from "../../../public/assets/motorbike.png"
+import { useParams } from "react-router-dom"
 
 
 const RestaurantMenu = () => {
     const [resMenuData, setResMenuData] = useState([])
 
-    
+    // Getting the restaurant ID from the URL
+    // const dynamicParams = useParams()
+    // const {resID} = dynamicParams
+    const {resID} = useParams()
 
     async function fetchResMenuData() {
-        const response = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&lat=22.588336&lng=88.428065&restaurantId=5381")
+        const response = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&lat=22.588336&lng=88.428065&restaurantId=" + resID)
         const jsonData = await response.json()
         // console.log(jsonData?.data?.cards)
         setResMenuData(jsonData?.data?.cards)
