@@ -13,7 +13,7 @@ const MenuItemCard = ({info}) => {
         <div className="menu-item-card">
             <div className="item-card-left-container">
                 <h1 className="item-name">{info?.name}</h1>
-                <h3 className="item-price">{"₹" + info?.price / 100}</h3>
+                <h3 className="item-price">{(info?.price) ? "₹" + info?.price / 100 : "₹" + info?.defaultPrice/100}</h3>
                 <h5 className="item-description">{info?.description}</h5>
             </div>
             <div className="item-card-right-container">
