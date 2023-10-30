@@ -1,0 +1,82 @@
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1em 6em;
+}
+
+.logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-image {
+    height: 3em;
+}
+
+#app-name {
+    font-size: 1rem;
+    color: #00ff99;
+    max-width: 3.5em;
+    text-align: center;
+}
+
+.navbar {
+    /* width: 20%; */
+}
+
+.navbar>ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: black;
+    padding: 0.5em 1em;
+    margin: 0.5em;
+}
+
+.nav-item.active {
+    color: #ffaa00;
+    border-bottom: 2px solid #ffaa00;
+}
+
+.nav-item:hover {
+    color: #ffaa00;
+}
+
+.cart-link-wrapper {
+    position: relative;
+}
+
+.cart-link {
+    color: #00ff99;
+}
+
+.cart-logo {
+    height: 2em;
+    width: 2em;
+}
+
+.cart-count {
+    background-color: #de4f4f;
+    color: #ffffff;
+
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0.7rem;
+}

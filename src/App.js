@@ -4,14 +4,9 @@ import MainContent from "./components/MainContent";
 
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
+import Header from "./components/Header/Header";
 
-const Header = () => {
-    return(
-        <div id="header">
-            <h1>Infinite Scroll</h1>
-        </div>
-    )
-}
+
 
 
 
