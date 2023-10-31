@@ -5,19 +5,20 @@ import MainContent from "./components/MainContent";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
 import Header from "./components/Header/Header";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 
 
-
-
-
-
+// App is the root component in our webapp, as all the components are subset of this App component
 const App = () => {
     return(
-        <div className="App">
-            <Header />
-            <Outlet />
-        </div>
+        <Provider store={store}>
+            <div className="App">
+                <Header />
+                <Outlet />
+            </div>
+        </Provider>
     )
 }
 
