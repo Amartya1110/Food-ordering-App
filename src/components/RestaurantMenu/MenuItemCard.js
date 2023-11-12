@@ -11,7 +11,7 @@ import { addItem, removeItem } from "../../utils/features/cart/cartSlice"
 
 const MenuItemCard = ({info}) => {
     // console.log(info)
-    const [itemCount, setItemCount] = useState(0)
+    const [itemCount, setItemCount] = useState((info?.itemCount!==undefined) ? info?.itemCount : 0)
     // console.log(itemCount)
 
     const dispatch = useDispatch()
