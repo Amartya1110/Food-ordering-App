@@ -1,18 +1,25 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 // CSS
 import "./MenuItemCard.css"
 
 // Importing Redux store actions
-import { addItem, removeItem } from "../../utils/features/cart/cartSlice"
+import { addCurrentmenuItemsCount, addItem, removeItem } from "../../utils/features/cart/cartSlice"
 
 
 
-const MenuItemCard = ({info}) => {
+const MenuItemCard = ({info, isCartRestaurant}) => {
     // console.log(info)
-    const [itemCount, setItemCount] = useState((info?.itemCount!==undefined) ? info?.itemCount : 0)
+    const menuItemCount = useSelector(store => store.cart.cartResData?.menuItemsCount[info?.id])
+
+    // const [itemCount, setItemCount] = useState((info?.itemCount!==undefined) ? info?.itemCount : 0)
+    // Here, "itemCount" - is the count of each menuItem ( When MenuItemCard is rendered inside cart.js)
+    const [itemCount, setItemCount] = useState((isCartRestaurant) ? (menuItemCount ? menuItemCount : 0) : info?.itemCount)
     // console.log(itemCount)
+    if(isCartRestaurant && menuItemCount) {
+        // setItemCount(menuItemsCount[info?.id])
+    }
 
     const dispatch = useDispatch()
 
@@ -25,6 +32,10 @@ const MenuItemCard = ({info}) => {
         setItemCount(prevItemCount => prevItemCount-1)
         dispatch(removeItem(info))
     }
+
+    useEffect(() => {
+        dispatch(addCurrentmenuItemsCount({[info?.id]: 0}))
+    },[])
 
 
     return (

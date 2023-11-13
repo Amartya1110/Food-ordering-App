@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 /*
 
@@ -23,23 +23,50 @@ const cartSlice = createSlice({
     initialState: {
         count: 0,
         cartItems: [],
+        currentResData: {
+            restaurantDetails: {},
+            menuItemsCount: {},
+        },
+        cartResData: undefined,
     },
     reducers: {
         addItem: (state, action) => {
+
+            // itemID is the unique ID of the dish that user has added to cart
+            const itemID = action?.payload?.id
+
+            // ================= Updating currentResData =================
+            state.currentResData.menuItemsCount[itemID] += 1
+
+            // ================= Updating cartResData =================
+            if(state.cartResData === undefined) {
+                state.cartResData = {...state.currentResData}
+            }
+            else if(state.currentResData.restaurantDetails.id === state.cartResData.restaurantDetails.id) {
+                state.cartResData.menuItemsCount[itemID] += 1
+            }
+            else if(state.currentResData.restaurantDetails.id !== state.cartResData.restaurantDetails.id) {
+                state.cartResData = {...state.currentResData}
+                // Clear the cart
+                state.count = 0
+                state.cartItems = []
+            }
+
+            // ================= Updating state.count =================
             // Optional chaining not valid on the left-hand side of an assignment
             // state?.count += 1  => Uncaught SyntaxError: Invalid left-hand side in assignment
             state.count += 1
 
-            // itemID is the unique ID of the dish that user has added to cart
-            const itemID = action?.payload?.id
+            // ================= Updating state.cartItems =================
+
             // Find whether the dish already exists in our cartItems- array
             const itemIndex = state?.cartItems.findIndex((item, index) => {
-                return (item.id === itemID) 
+                return (item.id === itemID)
                 // As soons as this condition will return true, findIndex() - method will return index 
                 // of that element in cartItems - array
             })
             // console.log(itemIndex)
-            // (itemIndex === 1) => means said dish doesn't exist in cartItems- array, so simply push it.
+            // (itemIndex === -1) => means said dish doesn't exist in cartItems- array, so simply push it.
             if(itemIndex === -1) {
                 state.cartItems.push({...action.payload, itemCount: 1})
             }
@@ -48,6 +75,8 @@ const cartSlice = createSlice({
             else {
                 state.cartItems[itemIndex].itemCount++
             }
+
+            
         },
         removeItem: (state, action) => {
             state.count--
@@ -75,13 +104,30 @@ const cartSlice = createSlice({
                 }
             }
         },
-        clearCart: (state, action) => {
+        clearCart: (state) => {
             state.count = 0
             state.cartItems = []
         },
+        addCurrentrestaurantDetails: (state, action) => {
+            console.log(action.payload)
+            state.currentResData.restaurantDetails = {...action.payload}
+        },
+        addCurrentmenuItemsCount: (state, action) => {
+            state.currentResData.menuItemsCount = {...state.currentResData.menuItemsCount, ...action.payload}
+        },
+        syncCartResWithCurrentRes: (state) => {
+            state.cartResData.restaurantDetails = {...state.currentResData}
+        }
     }
 })
 
 export default cartSlice.reducer
 
-export const {addItem, removeItem, clearCart} = cartSlice.actions
+export const {
+    addItem, 
+    removeItem, 
+    clearCart, 
+    addCurrentrestaurantDetails, 
+    addCurrentmenuItemsCount,
+    syncCartResWithCurrentRes
+} = cartSlice.actions

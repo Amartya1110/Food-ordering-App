@@ -8,16 +8,17 @@ import MenuItemCard from "../RestaurantMenu/MenuItemCard"
 
 const Cart = () => {
     // Subscribe to the cart slice : to access the cart related data fromthe cart slice
-    const cartInfo = useSelector(store => store?.cart)
-    console.log(cartInfo)
+    const count = useSelector(store => store.cart.count)
+    const cartItems = useSelector(store => store.cart.cartItems)
+    // console.log(cartInfo)
 
     return (
         <div>
             {
-                (cartInfo?.count === 0) ? <EmptyCart /> : (
+                (count === 0) ? <EmptyCart /> : (
                     <div className="cart-container">
                     {
-                        cartInfo?.cartItems.map(item => <MenuItemCard info={...item} />)
+                        cartItems.map(item => <MenuItemCard info={...item} />)
                     }
                     </div>
                 )

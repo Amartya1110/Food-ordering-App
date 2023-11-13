@@ -8,7 +8,7 @@ import MenuItemCard from "./MenuItemCard"
 import "./MenuSubCategory.css"
 
 
-const MenuSubCategory = ({title, itemCards}) => {
+const MenuSubCategory = ({title, itemCards,isCartRestaurant}) => {
 
     // console.log(itemCards)
     const [isOpen, setIsOpen] = useState(true)
@@ -16,6 +16,8 @@ const MenuSubCategory = ({title, itemCards}) => {
 
     return (
         <div className="menu-sub-category">
+            {/* {console.log(title)} */}
+            {/* {console.log(itemCards)} */}
             <div className="menu-sub-category-header" onClick={() => setIsOpen(prevValue => !prevValue)}>
                 <h1 className="menu-sub-category-heading">{title}</h1>
                 <div className="arrow-container">
@@ -32,7 +34,7 @@ const MenuSubCategory = ({title, itemCards}) => {
             </div>
             {
                 (isOpen) ?
-                itemCards.map(itemCard => <MenuItemCard key={itemCard?.card?.info?.id} {...(itemCard?.card)} />) :
+                itemCards.map(itemCard => <MenuItemCard isCartRestaurant={isCartRestaurant} key={itemCard?.card?.info?.id} {...(itemCard?.card)} />) :
                 null
             }
             

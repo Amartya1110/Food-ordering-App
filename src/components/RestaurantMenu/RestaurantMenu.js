@@ -1,6 +1,6 @@
 // API: https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&lat=22.588336&lng=88.428065&restaurantId=441752
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 // Components
 
@@ -13,25 +13,42 @@ import "./RestaurantMenu.css"
 // Images
 import deliveryIcon from "../../../public/assets/motorbike.png"
 import { useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { addCurrentrestaurantDetails, syncCartResWithCurrentRes } from "../../utils/features/cart/cartSlice"
 
 
 const RestaurantMenu = () => {
     const [resMenuData, setResMenuData] = useState([])
+    const isCartRestaurant = useRef(undefined)
 
     // Getting the restaurant ID from the URL
     // const dynamicParams = useParams()
     // const {resID} = dynamicParams
     const {resID} = useParams()
 
+    const dispatch = useDispatch()
+    const cartResID = useSelector(store => store.cartResData?.restaurantDetails?.id)
+
     async function fetchResMenuData() {
         const response = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&lat=22.588336&lng=88.428065&restaurantId=" + resID)
         const jsonData = await response.json()
         // console.log(jsonData?.data?.cards)
+        // localStorage.setItem("currentResMenuData", JSON.stringify(jsonData?.data?.cards))
         setResMenuData(jsonData?.data?.cards)
+        dispatch(addCurrentrestaurantDetails(jsonData?.data?.cards[0]?.card?.card?.info))
+        if(cartResID && cartResID === resID) {
+            isCartRestaurant = true
+        }
     }
 
     useEffect(() => {
         fetchResMenuData()
+
+
+        // The below return statement will work just like componentWillUnmount in class-based components
+        return () => {
+            
+        }
     },[])
 
     return (
@@ -79,7 +96,7 @@ const RestaurantMenu = () => {
                         if(menucategoryData?.card?.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory") {
                             return (
                                 <div key={menucategoryData?.card?.card?.title}>
-                                    <MenuCategory title={menucategoryData?.card?.card?.title} categories={menucategoryData?.card?.card?.categories} />
+                                    <MenuCategory isCartRestaurant={isCartRestaurant} title={menucategoryData?.card?.card?.title} categories={menucategoryData?.card?.card?.categories} />
                                     <div className="menu-category-border"></div>
                                 </div>
                             )
@@ -87,7 +104,7 @@ const RestaurantMenu = () => {
                         else if(menucategoryData?.card?.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") {
                             return (
                                 <div key={menucategoryData?.card?.card?.title}>
-                                    <MenuSubCategory {...(menucategoryData?.card?.card)} />
+                                    <MenuSubCategory isCartRestaurant={isCartRestaurant} {...(menucategoryData?.card?.card)} />
                                     <div className="menu-category-border"></div>
                                 </div>
                             )
