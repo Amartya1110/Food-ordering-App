@@ -13,7 +13,7 @@ const Cart = () => {
     // console.log(cartInfo)
 
     return (
-        <div>
+        <div className="cart-wrapper">
             {
                 (count === 0) ? <EmptyCart /> : (
                     <div className="cart-container">
