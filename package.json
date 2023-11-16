@@ -4,7 +4,7 @@
   "description": "This is a frontend application implementing Infinite Scroll",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "prod": "parcel build index.html",
     "test": "jest"
   },
   "author": "Amartya",
